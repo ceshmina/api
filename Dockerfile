@@ -9,4 +9,4 @@ RUN poetry install
 
 WORKDIR /project/python
 COPY python/ ./
-CMD poetry run python main.py
+CMD HOME=/root poetry run python main.py
