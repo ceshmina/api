@@ -1,12 +1,24 @@
 version: '3'
 
 services:
-  flask:
+  flask-dev:
     build:
       context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - PORT=${PORT}
     ports:
       - 8090:80
     volumes:
       - .:/project
     working_dir: /project/python
     command: poetry run python main.py
+
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=${PORT}
+    ports:
+      - 8091:80
