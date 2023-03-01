@@ -4,9 +4,10 @@ services:
   flask-dev:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: docker/flask-dev/Dockerfile
     environment:
       - PORT=${PORT}
+      - FLASK_ENV=dev
     ports:
       - 8090:80
     volumes:
@@ -17,7 +18,7 @@ services:
   flask:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/flask/Dockerfile
     environment:
       - PORT=${PORT}
     ports:
