@@ -1,3 +1,4 @@
+from google.cloud import firestore
 from flask import Flask
 import os
 
