@@ -26,6 +26,8 @@ services:
       - PORT=${PORT}
     ports:
       - 8091:80
+    volumes:
+      - ./config/account/api-test.json:/project/config/account/api-test.json
 
 volumes:
   venv:
