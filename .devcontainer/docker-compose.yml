@@ -1,0 +1,5 @@
+version: '3'
+
+services:
+  flask-dev:
+    command: sleep infinity
