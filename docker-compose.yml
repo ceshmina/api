@@ -6,12 +6,14 @@ services:
       context: .
       dockerfile: docker/flask-dev/Dockerfile
     environment:
-      - PORT=${PORT}
       - FLASK_ENV=dev
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - PORT=${PORT}
     ports:
       - 8090:80
     volumes:
       - .:/project
+      - venv:/project/.venv
     working_dir: /project/python
     command: poetry run python main.py
 
@@ -20,6 +22,10 @@ services:
       context: .
       dockerfile: docker/flask/Dockerfile
     environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - PORT=${PORT}
     ports:
       - 8091:80
+
+volumes:
+  venv:
