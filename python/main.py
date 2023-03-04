@@ -1,24 +1,11 @@
 from flask import Flask
-from google.cloud import firestore
 import os
+
+from web.routes import routes
 
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    return 'Hello world!'
-
-
-@app.route('/diary')
-def diary():
-    fs_client = firestore.Client()
-    entries = fs_client.collection('contents').document('diary') \
-        .collection('months').document('202301') \
-        .collection('entries').order_by('date', direction='DESCENDING').stream()
-
-    return [entry.to_dict() for entry in entries]
+app.register_blueprint(routes)
 
 
 if __name__ == '__main__':
