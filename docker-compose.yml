@@ -7,6 +7,7 @@ services:
       dockerfile: docker/flask-dev/Dockerfile
     environment:
       - FLASK_ENV=dev
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - PORT=${PORT}
     ports:
@@ -22,6 +23,7 @@ services:
       context: .
       dockerfile: docker/flask/Dockerfile
     environment:
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - PORT=${PORT}
     ports:
