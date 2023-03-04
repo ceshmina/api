@@ -1,8 +1,9 @@
 from flask import Blueprint, request
 from flask_login import login_required
 
-from app.index import index
 from app.diary import diary
+from app.chat import chat
+from app.index import index
 from auth.login import login, logout, user
 from web.response import build_response
 
@@ -37,3 +38,9 @@ def route_user():
 @routes.route('/logout')
 def route_logout():
     return build_response(logout)
+
+
+@routes.route('/chat')
+@login_required
+def route_chat():
+    return build_response(chat)
