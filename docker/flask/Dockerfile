@@ -10,4 +10,6 @@ RUN poetry config virtualenvs.in-project true \
 
 WORKDIR /project/python
 COPY python/ ./
-CMD HOME=/root poetry run python main.py
+
+ARG PORT
+CMD HOME=/root poetry run gunicorn -b 0.0.0.0:$PORT main:app

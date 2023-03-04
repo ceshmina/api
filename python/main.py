@@ -22,10 +22,17 @@ def _load_user(user_id: str) -> Optional[User]:
     return load_user(user_id)
 
 
-if __name__ == '__main__':
+def serv_debug(port: int):
+    app.run(host='0.0.0.0', port=port, debug=True)
+
+
+def main():
     port = int(os.environ.get('PORT', 8080))
     flask_env = os.environ.get('FLASK_ENV', '')
+    
     if flask_env == 'dev':
-        app.run(host='0.0.0.0', port=port, debug=True)
-    else:
-        app.run(host='0.0.0.0', port=port)
+        serv_debug(port)
+
+
+if __name__ == '__main__':
+    main()
