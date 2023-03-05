@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_login import LoginManager
 import os
 from typing import Optional
@@ -10,9 +11,13 @@ from web.routes import routes
 app = Flask(__name__)
 app.secret_key = os.environ['FLASK_SECRET_KEY']
 
+cors = CORS(app, resources={'/*': {'origins': [
+    'http://localhost:8080',
+    'https://dev.ceshmina.com',
+    'https://ceshmina.com'
+]}})
 
 app.register_blueprint(routes)
-
 
 login_manager = LoginManager(app)
 
