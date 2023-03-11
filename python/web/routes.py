@@ -3,6 +3,7 @@ from flask_login import login_required
 
 from app.diary import diary
 from app.chat import chat
+from app.events import lives
 from app.index import index
 from auth.login import login, logout, user
 from web.response import build_response
@@ -44,3 +45,8 @@ def route_logout():
 @login_required
 def route_chat():
     return build_response(chat)
+
+
+@routes.route('/lives')
+def route_lives():
+    return build_response(lives)
