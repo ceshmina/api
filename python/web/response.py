@@ -1,7 +1,12 @@
-from typing import Any, Callable, Dict, Tuple
+from typing import Any, Callable, NamedTuple
 
 
-def build_response(route: Callable, **kwargs) -> Tuple[Dict[str, Any], int]:
+class Response(NamedTuple):
+    response: dict[str, Any]
+    status: int
+
+
+def build_response(route: Callable, **kwargs: Any) -> Response:
     try:
         data = route(**kwargs)
         body = {'data': data}
@@ -11,4 +16,4 @@ def build_response(route: Callable, **kwargs) -> Tuple[Dict[str, Any], int]:
         status = 500
 
     response = {'status': status, 'body': body}
-    return response, status
+    return Response(response=response, status=status)

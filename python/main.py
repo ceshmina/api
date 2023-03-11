@@ -27,11 +27,11 @@ def _load_user(user_id: str) -> Optional[User]:
     return load_user(user_id)
 
 
-def serv_debug(port: int):
+def serv_debug(port: int) -> None:
     app.run(host='0.0.0.0', port=port, debug=True)
 
 
-def main():
+def main() -> None:
     port = int(os.environ.get('PORT', 8080))
     flask_env = os.environ.get('FLASK_ENV', '')
 

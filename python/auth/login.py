@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user
 from auth.user import get_user
 
 
-def login(user_id: str, password: str):
+def login(user_id: str, password: str) -> str:
     user = get_user(user_id, password)
     if user is not None:
         login_user(user)
@@ -12,11 +12,11 @@ def login(user_id: str, password: str):
         return 'Wrong user ID or password'
 
 
-def user():
+def user() -> str:
     user_id = current_user.get_id()
     return f'Logged in as {user_id}'
 
 
-def logout():
+def logout() -> str:
     logout_user()
     return 'Logged out'
