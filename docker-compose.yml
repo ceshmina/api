@@ -4,21 +4,34 @@ services:
   flask-dev:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: docker/flask-dev/Dockerfile
     environment:
+      - FLASK_ENV=dev
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PORT=${PORT}
     ports:
       - 8090:80
     volumes:
       - .:/project
+      - venv:/project/.venv
     working_dir: /project/python
     command: poetry run python main.py
 
   flask:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/flask/Dockerfile
     environment:
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PORT=${PORT}
     ports:
       - 8091:80
+    volumes:
+      - ./config/account/api-test.json:/project/config/account/api-test.json
+
+volumes:
+  venv:
