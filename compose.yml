@@ -48,5 +48,25 @@ services:
     working_dir: /project/tests
     command: poetry run pytest ./
 
+  flake8:
+    build:
+      context: .
+      dockerfile: docker/flask-dev/Dockerfile
+    volumes:
+      - .:/project
+      - venv:/project/.venv
+    working_dir: /project/python
+    command: poetry run flake8 --config ../config/lint/flake8.ini .
+
+  mypy:
+    build:
+      context: .
+      dockerfile: docker/flask-dev/Dockerfile
+    volumes:
+      - .:/project
+      - venv:/project/.venv
+    working_dir: /project/python
+    command: poetry run mypy --config-file ../config/lint/mypy.ini .
+
 volumes:
   venv:

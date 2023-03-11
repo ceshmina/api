@@ -34,7 +34,7 @@ def serv_debug(port: int):
 def main():
     port = int(os.environ.get('PORT', 8080))
     flask_env = os.environ.get('FLASK_ENV', '')
-    
+
     if flask_env == 'dev':
         serv_debug(port)
 

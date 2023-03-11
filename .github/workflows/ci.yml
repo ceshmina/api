@@ -26,3 +26,19 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: ../config/account/api-test.json
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           PORT: 8080
+
+  flake8:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: pytest
+        run: docker compose run --rm flake8
+
+  mypy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: pytest
+        run: docker compose run --rm mypy

@@ -9,8 +9,8 @@ def login(user_id: str, password: str):
         login_user(user)
         return f'Logged in as {user_id}'
     else:
-        return f'Wrong user ID or password'
-    
+        return 'Wrong user ID or password'
+
 
 def user():
     user_id = current_user.get_id()

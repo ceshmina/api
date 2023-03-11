@@ -18,7 +18,7 @@ def get_user(user_id: str, password: str) -> Optional[User]:
     for user in users:
         if user_id == user.get('user_id') and password_hash == user.get('password'):
             return User(user_id)
-    
+
     return None
 
 

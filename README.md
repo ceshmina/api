@@ -33,6 +33,19 @@ docker compose run --rm test
 
 `dev` ブランチにプッシュ/マージ時、GitHub Actionsでテストが実行されます。
 
+## lint
+
+### local
+
+```
+docker compose run --rm flake8
+docker compose run --rm mypy
+```
+
+### CI
+
+`dev` ブランチにプッシュ/マージ時、GitHub Actionsでflake8/mypyが実行されます。
+
 ## deployment
 
 ### local
