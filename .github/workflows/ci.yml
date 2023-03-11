@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: pytest
+      - name: flake8
         run: docker compose run --rm flake8
 
   mypy:
@@ -40,5 +40,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: pytest
+      - name: mypy
         run: docker compose run --rm mypy
