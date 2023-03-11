@@ -23,9 +23,15 @@ docker compose up flask-dev
 
 ## test
 
+### local
+
 ```
 docker compose run --rm test
 ```
+
+### CI
+
+`dev` ブランチにプッシュ/マージ時、GitHub Actionsでテストが実行されます。
 
 ## deployment
 
